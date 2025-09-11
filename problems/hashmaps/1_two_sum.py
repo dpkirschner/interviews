@@ -1,0 +1,50 @@
+"""
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+"""
+from collections import defaultdict
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        seen = defaultdict(list)
+        for i in range(len(nums)):
+            seen[nums[i]].append(i)
+        
+        for val in nums:
+            complement = target - val
+            if complement == val and len(seen[val]) >= 2:
+                return [seen[val][0], seen[val][1]]
+            if complement != val and complement in seen:
+                return [seen[complement][0], seen[val][0]]
+
+if __name__ == "__main__":
+    sol = Solution()
+    
+    assert sol.twoSum([2,7,11,15], 9) == [0,1] or sol.twoSum([2,7,11,15], 9) == [1,0]
+    assert sol.twoSum([3,2,4], 6) == [1,2] or sol.twoSum([3,2,4], 6) == [2,1]
+    assert sol.twoSum([3,3], 6) == [0,1] or sol.twoSum([3,3], 6) == [1,0]
+    
+    print("All test cases passed!")
