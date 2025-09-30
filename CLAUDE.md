@@ -52,3 +52,4 @@ When asked to write test cases:
 - Run tests with: `npm test` (if available)
 - Run linting with: `npm run lint` (if available)
 - Always verify code correctness before considering tasks complete
+- when i asks for tests for a problem number, add tests to the filename with that number in it. Tests should come from the examples in the docstring, should be repeatable, should allow for quick addition of other test cases, and should clearly print PASS / FAIL first, then the input and output
